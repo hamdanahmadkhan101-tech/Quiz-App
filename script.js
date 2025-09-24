@@ -55,28 +55,28 @@ let questions = [
   },
 ];
 
-// async function fetchRandomQuestions(amount = 10) {
-//   try {
-//     const response = await fetch(
-//       `https://opentdb.com/api.php?amount=${amount}&type=multiple`
-//     );
-//     const data = await response.json();
+async function fetchRandomQuestions(amount = 10) {
+  try {
+    const response = await fetch(
+      `https://opentdb.com/api.php?amount=${amount}&type=multiple`
+    );
+    const data = await response.json();
 
-//     return data.results.map((q) => ({
-//       question: q.question,
-//       answers: [
-//         { text: q.correct_answer, correct: true },
-//         ...q.incorrect_answers.map((ans) => ({ text: ans, correct: false })),
-//       ].sort(() => Math.random() - 0.5),
-//     }));
-//   } catch (error) {
-//     return questions;
-//   }
-// }
+    return data.results.map((q) => ({
+      question: q.question,
+      answers: [
+        { text: q.correct_answer, correct: true },
+        ...q.incorrect_answers.map((ans) => ({ text: ans, correct: false })),
+      ].sort(() => Math.random() - 0.5),
+    }));
+  } catch (error) {
+    return questions;
+  }
+}
 
-// fetchRandomQuestions().then((newQuestions) => {
-//   questions = newQuestions;
-// });
+fetchRandomQuestions().then((newQuestions) => {
+  questions = newQuestions;
+});
 
 const questionElement = document.querySelector("#question");
 const answerBtn = document.querySelector("#answer-buttons");
